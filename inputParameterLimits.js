@@ -10,7 +10,7 @@ const limits={
         maximum:80
     },
     chargeRate:{
-        minimum:0.00,
+        minimum:0.0,
         maximum:.8
     }
     

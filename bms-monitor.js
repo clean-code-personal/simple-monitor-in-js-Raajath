@@ -2,23 +2,29 @@ const {limits}=require('./inputParameterLimits');
 
 function batteryStatus(limits)
 {
-
-    function checkError(inputParameter,parameterRange){
-       return inputParameter<parameterRange.minimum || inputParameter>parameterRange.maximum;
+        // function to know if breach is Higher or lower than given limits
+    function checkBreach(inputParameter,parameterRange){
+            if(inputParameter<parameterRange.minimum)
+            {
+             return 'low';
+            }
+            else if(inputParameter>parameterRange.maximum){
+             return 'high';
+            }
+            return '';
      }
-
-    function getLog(errorStatus,inputParameterType){
-    
-      return errorStatus ? `${inputParameterType} is out of range!`:'';
+     
+    function getLog(errorType,inputParameterType){
+            return errorType===''?'':`${inputParameterType} is ${errorType}`;
     }
+      
 
     function batteryIsOk(temperature, soc, charge_rate) {
 
-    
-        const temperatureError=checkError(temperature,limits.temperature);
-        const socError=checkError(soc,limits.soc);
-        const chargeRateError=checkError(charge_rate,limits.chargeRate);
-    
+        const temperatureError=checkBreach(temperature,limits.temperature);
+        const socError=checkBreach(soc,limits.soc);
+        const chargeRateError=checkBreach(charge_rate,limits.chargeRate);
+
         const temperatureErrorLog=getLog(temperatureError,"Temperature");
         const socErrorLog=getLog(socError,"State of Battery")
         const chargeRateErrorLog=getLog(chargeRateError,"Charge Rate");

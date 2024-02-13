@@ -16,8 +16,8 @@ assert.strictEqual(testBatteryCondition.batteryIsOk(40,70,0.9),"Charge Rate is h
 assert.strictEqual(testBatteryCondition.batteryIsOk(50,70,0.9),"Temperature is high\nCharge Rate is high");
 assert.strictEqual(testBatteryCondition.batteryIsOk(50,90,0.7),"Temperature is high\nState of Battery is high");
 assert.strictEqual(testBatteryCondition.batteryIsOk(40,90,0.9),"State of Battery is high\nCharge Rate is high");
-
 assert.strictEqual(testBatteryCondition.batteryIsOk(-1,10,0.7),"Temperature is low\nState of Battery is low");
+
 //testing if all parameters are out of ideal range
 assert.strictEqual(testBatteryCondition.batteryIsOk(50,90,0.9),"Temperature is high\nState of Battery is high\nCharge Rate is high");
 assert.strictEqual(testBatteryCondition.batteryIsOk(-1,10,-1),"Temperature is low\nState of Battery is low\nCharge Rate is low");
