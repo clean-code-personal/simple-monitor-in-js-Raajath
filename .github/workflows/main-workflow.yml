@@ -20,6 +20,6 @@ jobs:
         run: node bms-monitor.js 
         
       - name: Test Run
-        run: node "node Tests/test.js"
+        run: node Tests/test.js
 
        
