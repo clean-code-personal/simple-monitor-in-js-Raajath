@@ -2,8 +2,7 @@ const {limits}=require('./inputParameterLimits');
 const {outPutLogs}=require('./outputLogs');
 
 function batteryStatus(limits,outPutLogs)
-{
-        
+{       
     function getLogsFromInputAndRange(input,parameterRange,inputParameterType){
             if(input<parameterRange.minimum)
             {
@@ -25,9 +24,7 @@ function batteryStatus(limits,outPutLogs)
         .filter(
             (log)=>{
                 return log!='';
-            } );
-            //used filter to remove empty logs
-        
+            } ); 
         return errorLogs.length==0?'Battery is good':errorLogs.join('\n');
     }
 return {batteryIsOk};
