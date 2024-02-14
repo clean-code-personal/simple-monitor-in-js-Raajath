@@ -1,8 +1,9 @@
 const { batteryStatus } = require("../bms-monitor");
 const {limits}=require('../inputParameterLimits');
+const {outPutLogs}=require('../outputLogs');
 const assert =require('assert');
 
-const testBatteryCondition=batteryStatus(limits);
+const testBatteryCondition=batteryStatus(limits,outPutLogs);
 
 // testing when battery is good and one of the parameter is out of range
 assert.strictEqual(testBatteryCondition.batteryIsOk(40,70,0.7),"Battery is good");
