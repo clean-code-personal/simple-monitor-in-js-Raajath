@@ -1,11 +1,10 @@
 
 const {rangeLog}=require('./rangeMessages');
 
-function batteryStatus(limits,outPutLogs)
+function batteryStatus(rangeLog)
 {
         
     function getLogsFromInputAndRange(input,inputParameterType){
-        
         const parameter=rangeLog[inputParameterType].dataRanges;
         let previousKey=null;
         for(currentKey in parameter){
@@ -25,7 +24,7 @@ function batteryStatus(limits,outPutLogs)
         }
         return"Out of Bound";
 
-
+    }
      
     function batteryIsOk(temperature, soc, charge_rate) {
 
@@ -40,7 +39,7 @@ function batteryStatus(limits,outPutLogs)
             } );
             //used filter to remove empty logs
         
-        return errorLogs.length==0?'Battery is good':errorLogs.join('\n');
+        return outPutMessages.length==0?'Battery is good':outPutMessages.join('\n');
     }
 return {batteryIsOk};
 
