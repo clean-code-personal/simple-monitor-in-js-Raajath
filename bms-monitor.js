@@ -3,8 +3,8 @@ const {outPutLogs}=require('./outputLogs');
 
 function batteryStatus(limits,outPutLogs)
 {
-        // function to know if breach is Higher or lower than given limits
-    function checkBreach(input,parameterRange,inputParameterType){
+        
+    function getLogsFromInputAndRange(input,parameterRange,inputParameterType){
             if(input<parameterRange.minimum)
             {
              return outPutLogs[inputParameterType].low;
@@ -17,9 +17,9 @@ function batteryStatus(limits,outPutLogs)
      
     function batteryIsOk(temperature, soc, charge_rate) {
 
-        const temperatureErrorLog=checkBreach(temperature,limits.temperature,'temperature');
-        const socErrorLog=checkBreach(soc,limits.soc,'soc');
-        const chargeRateErrorLog=checkBreach(charge_rate,limits.chargeRate,'chargeRate');
+        const temperatureErrorLog=getLogsFromInputAndRange(temperature,limits.temperature,'temperature');
+        const socErrorLog=getLogsFromInputAndRange(soc,limits.soc,'soc');
+        const chargeRateErrorLog=getLogsFromInputAndRange(charge_rate,limits.chargeRate,'chargeRate');
       
         const errorLogs=[temperatureErrorLog,socErrorLog,chargeRateErrorLog]
         .filter(
