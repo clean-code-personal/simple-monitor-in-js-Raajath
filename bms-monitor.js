@@ -7,16 +7,12 @@ function batteryStatus(rangeLog)
     function getLogsFromInputAndRange(input,inputParameterType){
         const parameter=rangeLog[inputParameterType].dataRanges;
         let previousKey=null;
+
         for(currentKey in parameter){
           const convertNum=parseFloat(currentKey);
          
           if(input<convertNum){
-             if(previousKey!=null){
-             return parameter[previousKey];
-             }
-             else{
-                 return "Out of Bound";
-             }
+             return parameter[previousKey]==null? "Out of Bound":parameter[previousKey];   
           }
          
           previousKey=currentKey;
