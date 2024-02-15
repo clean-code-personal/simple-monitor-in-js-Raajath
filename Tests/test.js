@@ -62,6 +62,7 @@ test9:{
     expectedMessage:"Temperature Low-Warning\nState of Battery Low-Warning\nCharge Rate Low-Warning"
      
 },
+
 test10:{
     temperature:44,
     soc:78,

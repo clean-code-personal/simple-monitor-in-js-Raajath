@@ -2,31 +2,26 @@
 const {rangeLog}=require('./rangeMessages');
 
 function batteryStatus(rangeLog)
-{
-        
-    function getLogsFromInputAndRange(input,inputParameterType){
-        const parameter=rangeLog[inputParameterType].dataRanges;
-        let previousKey=null;
+{  
+  
+    function getMessageFromInput(input,inputParameterType){
+        const rangesArray=rangeLog[inputParameterType].dataRanges;
+       
+        const findIndex=rangesArray.findIndex(element=>{
+            return element.limit>input;
+        });
 
-        for(currentKey in parameter){
-          const convertNum=parseFloat(currentKey);
-         
-          if(input<convertNum){
-             return parameter[previousKey]==null? "Out of Bound":parameter[previousKey];   
-          }
-         
-          previousKey=currentKey;
-
-        }
-        return"Out of Bound";
+        return rangesArray[findIndex-1].message;
 
     }
+
+    
      
     function batteryIsOk(temperature, soc, charge_rate) {
 
-        const temperatureErrorLog=getLogsFromInputAndRange(temperature,'temperature');
-        const socErrorLog=getLogsFromInputAndRange(soc,'soc');
-        const chargeRateErrorLog=getLogsFromInputAndRange(charge_rate,'chargeRate');
+        const temperatureErrorLog=getMessageFromInput(temperature,'temperature');
+        const socErrorLog=getMessageFromInput(soc,'soc');
+        const chargeRateErrorLog=getMessageFromInput(charge_rate,'chargeRate');
       
         const outPutMessages=[temperatureErrorLog,socErrorLog,chargeRateErrorLog]
         .filter(
