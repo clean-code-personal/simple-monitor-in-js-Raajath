@@ -1,7 +1,7 @@
 # Added Extentions
- -Extension 1: Early Warning.
- -Extension 2: Support a language in addition to English.
- -Extension 3: Accept input in different units.
+  Extension 1: Early Warning.    
+ -Extension 2: Support a language in addition to English.   
+ -Extension 3: Accept input in different units.   
 
 # Programming Paradigms
 
