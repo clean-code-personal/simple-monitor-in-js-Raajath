@@ -20,7 +20,7 @@ jobs:
         run: node bms-monitor.js 
         
       - name: Tests 
-        run:  npx mocha Tests/test.js
+        run:  npx mocha Tests
 
 
        

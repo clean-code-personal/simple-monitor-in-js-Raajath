@@ -1,6 +1,7 @@
 const { langaugeMessages } = require("./rangeMessages");
+const {checkUnit}=require("./checkInputUnit");
 
-function batteryStatus(langaugeMessages, selectedLangauge) {
+function batteryStatus(langaugeMessages, selectedLangauge,parameters) {
     
   function getMessageFromInput(input, inputParameterType) {
     const rangesArray = langaugeMessages[inputParameterType].dataRanges;
@@ -11,10 +12,16 @@ function batteryStatus(langaugeMessages, selectedLangauge) {
     return rangeArrayObject[selectedLangauge];
   }
 
-  function batteryIsOk(temperature, soc, charge_rate) {
+
+
+  function batteryIsOk() {
+    const temperature=checkUnit(parameters,"temperature");
+    const soc=checkUnit(parameters,"soc");
+    const chargeRate=checkUnit(parameters,"chargeRate");
+
     const temperatureErrorLog = getMessageFromInput(temperature, "temperature");
     const socErrorLog = getMessageFromInput(soc, "soc");
-    const chargeRateErrorLog = getMessageFromInput(charge_rate, "chargeRate");
+    const chargeRateErrorLog = getMessageFromInput(chargeRate, "chargeRate");
     const outPutMessages = [
       temperatureErrorLog,
       socErrorLog,
@@ -27,7 +34,8 @@ function batteryStatus(langaugeMessages, selectedLangauge) {
       ? langaugeMessages[selectedLangauge]
       : outPutMessages.join("\n");
   }
-  return { batteryIsOk };
+  const returnValue=batteryIsOk();
+  return returnValue;
 }
 
 module.exports = { batteryStatus };
