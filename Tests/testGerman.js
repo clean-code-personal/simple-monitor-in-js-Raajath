@@ -3,6 +3,7 @@ const { langaugeMessages } = require("../rangeMessages");
 const assert = require("assert");
 const { describe, it } = require("mocha");
 
+const parameterTypes=["temperature","soc","chargeRate"];
 const testCasesGerman = {
     test1: {
       parameters: {
@@ -12,11 +13,11 @@ const testCasesGerman = {
         },
         soc: {
           value: 70,
-          unit: 'C'
+          unit: ''
         },
         chargeRate: {
           value: 0.7,
-          unit: ''
+          unit: 'C'
         }
       },
       expectedMessage: "Batterie ist ok",
@@ -29,11 +30,11 @@ const testCasesGerman = {
         },
         soc: {
           value: 10,
-          unit: 'C'
+          unit: ''
         },
         chargeRate: {
           value: 0.01,
-          unit: ''
+          unit: 'C'
         }
       },
       expectedMessage: "Die Temperatur ist niedrig\nDer Batteriestand ist niedrig\nDie Laderate ist niedrig",
@@ -47,11 +48,11 @@ const testCasesGerman = {
         },
         soc: {
           value: 22,
-          unit: 'C'
+          unit: ''
         },
         chargeRate: {
           value: 0.07,
-          unit: ''
+          unit: 'C'
         }
       },
       expectedMessage: "Warnung vor niedriger Temperatur\nWarnung vor niedrigem Batteriestand\nWarnung vor niedrigem Ladestrom",
@@ -64,11 +65,11 @@ const testCasesGerman = {
         },
         soc: {
           value: 110,
-          unit: 'C'
+          unit: ''
         },
         chargeRate: {
           value: 1.1,
-          unit: ''
+          unit: 'C'
         }
       },
       expectedMessage: "Außerhalb der Grenzen\nAußerhalb der Grenzen\nAußerhalb der Grenzen",
@@ -87,6 +88,7 @@ const testCasesGerman = {
             langaugeMessages,
             "German",
             test.parameters,
+            parameterTypes
           ),
           test.expectedMessage,
         );

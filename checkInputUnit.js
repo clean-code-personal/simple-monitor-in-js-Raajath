@@ -11,10 +11,10 @@ const unitMapperAndConverter={
     }
     },
     soc:{
-    unit:'C'
+    unit:''
     },
     chargeRate:{
-    unit:''
+    unit:'C'
     }
 }
 

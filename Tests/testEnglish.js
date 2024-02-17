@@ -3,7 +3,7 @@ const { langaugeMessages } = require("../rangeMessages");
 const assert = require("assert");
 const { describe, it } = require("mocha");
 
-
+const parameterTypes=["temperature","soc","chargeRate"];
 const testCasesEnglish = {
   test1: {
     parameters: {
@@ -13,11 +13,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 70,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.7,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Battery is good",
@@ -30,11 +30,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 70,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.7,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Temperature is high",
@@ -47,11 +47,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 90,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.7,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "State of Battery is high",
@@ -65,11 +65,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 90,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.7,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Temperature is high\nState of Battery is high",
@@ -83,11 +83,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 10,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.01,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Temperature is low\nState of Battery is low\nCharge Rate is low",
@@ -100,11 +100,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 95,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.9,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Temperature is high\nState of Battery is high\nCharge Rate is high",
@@ -117,11 +117,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 22,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.07,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Temperature Low-Warning\nState of Battery Low-Warning\nCharge Rate Low-Warning",
@@ -134,11 +134,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 78,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 0.78,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Temperature High-Warning\nState of Battery High-Warning\nCharge Rate High-Warning",
@@ -151,11 +151,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: 110,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: 1.1,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Out of Bound\nOut of Bound\nOut of Bound",
@@ -168,11 +168,11 @@ const testCasesEnglish = {
       },
       soc: {
         value: -1,
-        unit: 'C'
+        unit: ''
       },
       chargeRate: {
         value: -1,
-        unit: ''
+        unit: 'C'
       }
     },
     expectedMessage: "Out of Bound\nOut of Bound\nOut of Bound",
@@ -192,6 +192,7 @@ describe("Battery conditions all tests In English", function () {
           langaugeMessages,
           "English",
           test.parameters,
+          parameterTypes
         ),
         test.expectedMessage,
       );

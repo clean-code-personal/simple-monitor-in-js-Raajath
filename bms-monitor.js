@@ -1,7 +1,9 @@
 const { langaugeMessages } = require("./rangeMessages");
 const {checkUnit}=require("./checkInputUnit");
 
-function batteryStatus(langaugeMessages, selectedLangauge,parameters) {
+const parameterTypes=["temperature","soc","chargeRate"];
+
+function batteryStatus(langaugeMessages, selectedLangauge,parameters,parameterTypes) {
     
   function getMessageFromInput(input, inputParameterType) {
     const rangesArray = langaugeMessages[inputParameterType].dataRanges;
@@ -15,27 +17,24 @@ function batteryStatus(langaugeMessages, selectedLangauge,parameters) {
 
 
   function batteryIsOk() {
-    const temperature=checkUnit(parameters,"temperature");
-    const soc=checkUnit(parameters,"soc");
-    const chargeRate=checkUnit(parameters,"chargeRate");
+   let outPutMessages=[];
+   parameterTypes.forEach((parameterType)=>{
+   let unitValue=checkUnit(parameters,parameterType);
+   let log=getMessageFromInput(unitValue,parameterType);
+   outPutMessages.push(log); 
+   });
 
-    const temperatureErrorLog = getMessageFromInput(temperature, "temperature");
-    const socErrorLog = getMessageFromInput(soc, "soc");
-    const chargeRateErrorLog = getMessageFromInput(chargeRate, "chargeRate");
-    const outPutMessages = [
-      temperatureErrorLog,
-      socErrorLog,
-      chargeRateErrorLog,
-    ].filter((log) => {
+    const filteredMessages=outPutMessages.filter((log) => {
       return log != "";
     });
 
-    return outPutMessages.length == 0
+    return filteredMessages.length == 0
       ? langaugeMessages[selectedLangauge]
-      : outPutMessages.join("\n");
+      : filteredMessages.join("\n");
   }
   const returnValue=batteryIsOk();
   return returnValue;
 }
+
 
 module.exports = { batteryStatus };
