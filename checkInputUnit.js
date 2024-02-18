@@ -3,10 +3,10 @@ const unitMapperAndConverter={
     unit:'C',
     convertUnit:function(inputUnit,inputValue){
         if(inputUnit==='F'){
-            return (inputValue - 32)*5/9;
+            return ((inputValue - 32)*5/9).toFixed(4);
         } 
         if(inputUnit==='K'){
-            return inputValue - 273.15;
+            return (inputValue - 273.15).toFixed(4);
         }
     }
     },

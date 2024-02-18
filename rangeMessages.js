@@ -1,7 +1,7 @@
 const langaugeMessages = {
   temperature: {
     dataRanges: [
-      {
+      { 
         limit: Number.MIN_SAFE_INTEGER,
         English: "Out of Bound",
         German: "Außerhalb der Grenzen",
