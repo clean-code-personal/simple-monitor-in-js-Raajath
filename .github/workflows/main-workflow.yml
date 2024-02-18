@@ -17,4 +17,10 @@ jobs:
         run:  sudo npm install
       
       - name: BMS monitor
-        run: node bms-monitor.js
+        run: node bms-monitor.js 
+        
+      - name: Tests 
+        run:  npx mocha Tests
+
+
+       
